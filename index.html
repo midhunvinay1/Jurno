@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0d0b" />
+    <title>LIFE — make a life worth remembering</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell" id="appShell">
+      <aside class="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#today" aria-label="LIFE home">
+          <span class="brand-mark">L</span><span>LIFE</span>
+        </a>
+        <button class="quick-nav" id="openCapture" type="button"><span>+</span> Log something <kbd>C</kbd></button>
+        <nav class="nav-list">
+          <button class="nav-item active" data-view="today" type="button"><span class="nav-icon">⌂</span> Today</button>
+          <button class="nav-item" data-view="library" type="button"><span class="nav-icon">◫</span> Library</button>
+          <button class="nav-item" data-view="study" type="button"><span class="nav-icon">◷</span> Study</button>
+          <button class="nav-item" data-view="courses" type="button"><span class="nav-icon">▤</span> Courses</button>
+          <button class="nav-item" data-view="journal" type="button"><span class="nav-icon">✎</span> Journal</button>
+          <button class="nav-item" data-view="goals" type="button"><span class="nav-icon">✓</span> Goals</button>
+        </nav>
+        <div class="nav-divider"></div>
+        <nav class="nav-list nav-list--quiet">
+          <button class="nav-item" data-view="rituals" type="button"><span class="nav-icon">◌</span> Rituals</button>
+          <button class="nav-item" data-view="archive" type="button"><span class="nav-icon">▦</span> Archive</button>
+          <button class="nav-item" data-view="dashboard" type="button"><span class="nav-icon">⌁</span> Dashboard</button>
+          <button class="nav-item" data-view="achievements" type="button"><span class="nav-icon">✦</span> Achievements</button>
+          <button class="nav-item" data-view="settings" type="button"><span class="nav-icon">⚙</span> Settings</button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="streak-mini"><span class="flame">✦</span><strong id="sideStreak">6</strong><span>day rhythm</span></div>
+          <button class="profile-button" data-view="character" type="button"><span class="avatar-small" id="profileInitial">Y</span><span><b id="profileName">You</b><small>Level <span id="sideLevel">5</span> Explorer</small></span><i>›</i></button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Open navigation">☰</button>
+          <div class="breadcrumb" id="breadcrumb">Today <span>·</span> <span id="todayDate"></span></div>
+          <div class="top-actions">
+            <button class="icon-button" id="searchBtn" type="button" aria-label="Search" title="Search (/) ">⌕</button>
+            <button class="icon-button" id="themeCycle" type="button" aria-label="Change theme" title="Change theme">◐</button>
+            <button class="today-pill" id="focusMode" type="button"><span class="dot"></span> Focus</button>
+          </div>
+        </header>
+
+        <section class="view active" id="view-today" aria-labelledby="todayTitle">
+          <div class="today-grid">
+            <div class="hero-copy">
+              <p class="eyebrow" id="greeting">TUESDAY, SEPTEMBER 2</p>
+              <h1 id="todayTitle">A small action<br />still counts.</h1>
+              <p class="hero-subtitle" id="dailyLine">You have room for one good thing today.</p>
+              <div class="hero-actions">
+                <button class="btn btn-primary" id="heroLog" type="button">Log your moment <span>↵</span></button>
+                <button class="btn btn-quiet" id="heroReflect" type="button">Write reflection</button>
+              </div>
+            </div>
+            <div class="character-stage" aria-label="Your LIFE character">
+              <div class="sun-shape"></div><div class="mountain mountain-one"></div><div class="mountain mountain-two"></div>
+              <div class="character-wrap" id="characterWrap"><img class="companion-image" src="life-companion.png" alt="A friendly LIFE companion, growing with your progress" /></div>
+              <div class="character-label"><span class="spark">✦</span> <span id="characterGrowth">growing gently</span></div>
+            </div>
+          </div>
+
+          <section class="xp-panel" aria-label="Experience progress">
+            <div class="xp-copy"><span class="level-chip">LVL <b id="levelNumber">5</b></span><div><strong id="xpToNext">640 XP</strong><span> to your next chapter</span></div></div>
+            <div class="xp-track"><div class="xp-fill" id="xpFill"></div><i class="xp-orb" id="xpOrb">✦</i></div>
+            <div class="xp-total"><strong id="xpTotal">1,240</strong><span>total XP</span></div>
+          </section>
+
+          <section class="capture-card" id="captureCard" aria-labelledby="captureTitle">
+            <div class="capture-top"><div><p class="eyebrow">QUICK CAPTURE</p><h2 id="captureTitle">What happened?</h2></div><button class="shortcut-help" id="syntaxHelp" type="button">How to log <kbd>?</kbd></button></div>
+            <div class="capture-input-wrap"><span class="capture-prompt" id="capturePrefix">✦</span><input id="quickCapture" autocomplete="off" placeholder="watched a film, studied 45m, read a few pages…" aria-label="Quick log" /><button class="capture-send" id="captureSend" type="button" aria-label="Save log">↵</button></div>
+            <div class="capture-hints"><button data-capture="f perfect days (2023) *4.5" type="button">f <span>film + rating</span></button><button data-capture="s 45m linear algebra #exam" type="button">s <span>study time</span></button><button data-capture="b piranesi p120/272 25m" type="button">b <span>book progress</span></button><button data-capture="n took a walk 20m" type="button">n <span>anything else</span></button></div>
+          </section>
+
+          <div class="section-heading"><div><p class="eyebrow">YOUR NEXT GOOD THING</p><h2>Keep it light</h2></div><button class="text-button" data-view="goals" type="button">See all goals →</button></div>
+          <section class="now-grid" id="nowGrid"></section>
+
+          <div class="section-heading section-heading--timeline"><div><p class="eyebrow">TODAY'S STORY</p><h2>Little things, recorded</h2></div><button class="text-button" id="clearToday" type="button">Clear demo data</button></div>
+          <section class="timeline-card"><div class="timeline" id="timeline"></div></section>
+        </section>
+
+        <section class="view" id="view-library" aria-labelledby="libraryTitle">
+          <div class="page-heading"><div><p class="eyebrow">YOUR PERSONAL SHELF</p><h1 id="libraryTitle">A life in stories.</h1><p>Every watch, read, and play — yours, not a feed.</p></div><div class="page-actions"><label class="search-field"><span>⌕</span><input id="librarySearch" placeholder="Search your library" /></label><button class="btn btn-quiet" id="addMediaList" type="button">+ New list</button><button class="btn btn-primary" id="addLibraryItem" type="button">+ Add to library</button></div></div>
+          <div class="library-tabs" role="tablist"><button class="library-tab active" data-library="films" type="button">Films <span id="filmCount">0</span></button><button class="library-tab" data-library="books" type="button">Books <span id="bookCount">0</span></button><button class="library-tab" data-library="series" type="button">Series <span id="seriesCount">0</span></button><button class="library-tab" data-library="games" type="button">Games <span id="gameCount">0</span></button><button class="library-tab" data-library="watchlist" type="button">Watchlist <span id="watchCount">0</span></button><button class="library-tab" data-library="lists" type="button">Lists <span id="listCount">0</span></button></div>
+          <div class="library-toolbar"><span id="libraryDescription">Films you made time for.</span><div><button class="filter-chip active" data-library-filter="all" type="button">All time</button><button class="filter-chip" data-library-filter="recent" type="button">Recent</button><button class="filter-chip" data-library-filter="rated" type="button">Highest rated</button></div></div>
+          <div class="media-grid" id="mediaGrid"></div>
+          <article class="recommendation-card"><div class="recommendation-orb">✦</div><div><p class="eyebrow">FROM YOUR ARCHIVE</p><h3 id="recommendationTitle">A thoughtful next story, when you want one.</h3><p id="recommendationCopy">Recommendations are grounded in the things you have already loved—not a public feed.</p></div><button class="btn btn-quiet" id="getRecommendation" type="button">Suggest something</button></article>
+          <div class="import-card"><div class="import-icon">↥</div><div><h3>Bring your Letterboxd history with you</h3><p>Select standard <code>diary.csv</code>, <code>watched.csv</code>, <code>ratings.csv</code>, <code>watchlist.csv</code>, likes, or list exports together. Nothing leaves this browser.</p></div><label class="btn btn-quiet file-button">Import CSV <input id="csvImport" type="file" accept=".csv,text/csv" multiple /></label></div>
+        </section>
+
+        <section class="view" id="view-study" aria-labelledby="studyTitle">
+          <div class="page-heading"><div><p class="eyebrow">SCHOLARSHIP TRACK</p><h1 id="studyTitle">Make attention visible.</h1><p>Sessions count. Wandering back counts too.</p></div><button class="btn btn-primary" id="openStudyLog" type="button">+ Log study</button></div>
+          <div class="study-layout">
+            <article class="timer-card"><div class="timer-top"><span class="timer-label">FOCUS TIMER</span><button class="tiny-button" id="timerReset" type="button">Reset</button></div><div class="timer-display" id="timerDisplay">25:00</div><div class="timer-topic"><span>#</span><input id="timerTopic" placeholder="What are you learning?" value="Linear algebra" /></div><div class="timer-actions"><button class="btn btn-primary btn-wide" id="timerStart" type="button">Start a gentle sprint</button><button class="timer-mode active" data-minutes="25" type="button">25</button><button class="timer-mode" data-minutes="45" type="button">45</button><button class="timer-mode" data-minutes="60" type="button">60</button></div></article>
+            <article class="study-stats"><p class="eyebrow">THIS WEEK</p><div class="stat-number"><b id="studyWeek">4h 10m</b><span>of thoughtful effort</span></div><div class="week-bars" id="weekBars"></div><div class="study-stat-bottom"><span>Best focus <b>Tuesday</b></span><span><b id="studySessions">7</b> sessions</span></div></article>
+          </div>
+          <div class="section-heading"><div><p class="eyebrow">TOPICS IN MOTION</p><h2>Follow your curiosity</h2></div><button class="text-button" id="askStudyCoach" type="button">Ask study coach →</button></div>
+          <div class="topic-grid" id="topicGrid"></div>
+          <section class="skills-ribbon" aria-labelledby="skillsTitle"><div><p class="eyebrow">PRACTICE &amp; MASTERY</p><h2 id="skillsTitle">Skills grow from repetitions.</h2></div><button class="btn btn-quiet" id="addSkill" type="button">+ Add practice</button><div class="skill-strip" id="skillStrip"></div></section>
+        </section>
+
+        <section class="view" id="view-courses" aria-labelledby="coursesTitle">
+          <div class="page-heading"><div><p class="eyebrow">LEARNING PATHS</p><h1 id="coursesTitle">Courses without the clutter.</h1><p>A link, a textbook, or a simple list — one part at a time.</p></div><button class="btn btn-primary" id="addCourse" type="button">+ Add course</button></div>
+          <div class="course-grid" id="courseGrid"></div>
+          <article class="course-create-card"><div class="course-create-art"><span>⌁</span></div><div><p class="eyebrow">MAKE A PATH</p><h2>Turn a course into small wins.</h2><p>Paste a course link or table of contents. Add parts yourself, or let a connected LLM propose an editable plan.</p></div><button class="btn btn-quiet" id="coursePlan" type="button">Create a path</button></article>
+        </section>
+
+        <section class="view" id="view-journal" aria-labelledby="journalTitle">
+          <div class="page-heading"><div><p class="eyebrow" id="journalDate">TODAY</p><h1 id="journalTitle">End the day with kindness.</h1><p>Honest reflection, without turning it into homework.</p></div><div class="journal-mood" aria-label="How did today feel?"><span>How did today feel?</span><div id="moodChoices"><button data-mood="1" type="button">◔</button><button data-mood="2" type="button">◒</button><button data-mood="3" class="active" type="button">◐</button><button data-mood="4" type="button">◓</button><button data-mood="5" type="button">●</button></div></div></div>
+          <form class="reflection-form" id="journalForm"><label class="reflection-field field-did"><span class="reflection-number">01</span><span class="reflection-label">What did I do today?</span><textarea id="journalDid" placeholder="Small things count: what did you show up for?"></textarea></label><label class="reflection-field field-wrong"><span class="reflection-number">02</span><span class="reflection-label">What felt off?</span><textarea id="journalWrong" placeholder="No judgment. Notice what got in the way."></textarea></label><label class="reflection-field field-improve"><span class="reflection-number">03</span><span class="reflection-label">What could make tomorrow softer?</span><textarea id="journalImprove" placeholder="One practical, compassionate adjustment."></textarea></label><label class="reflection-field field-note"><span class="reflection-number">+</span><span class="reflection-label">Anything else worth keeping?</span><textarea id="journalFreeform" placeholder="A freeform memory, quote, sketch, or thought."></textarea></label><div class="journal-save"><div id="journalSavedState">Not saved yet</div><button class="btn btn-primary" type="submit">Save reflection <span>⌘↵</span></button></div></form>
+          <article class="coach-card"><div class="coach-orb">✦</div><div><p class="eyebrow">REFLECTION COMPANION</p><h3 id="coachTitle">A gentle question, whenever you want one.</h3><p id="coachText">Your journal stays yours. A connected LLM can offer a question or spot a pattern, but it never writes your words for you.</p></div><button class="btn btn-quiet" id="coachQuestion" type="button">Ask a question</button></article>
+        </section>
+
+        <section class="view" id="view-goals" aria-labelledby="goalsTitle">
+          <div class="page-heading"><div><p class="eyebrow">DIRECTION, NOT PRESSURE</p><h1 id="goalsTitle">Choose the next step.</h1><p>Goals become a few kind, concrete tasks — never an infinite project tree.</p></div><button class="btn btn-primary" id="addGoal" type="button">+ Add a goal</button></div>
+          <div class="goals-layout"><section class="goals-list" id="goalsList"></section><aside class="goal-sidecard"><div class="sidecard-icon">✦</div><p class="eyebrow">COACHING, ON YOUR TERMS</p><h3>From a goal to an honest plan.</h3><p>Use an LLM to suggest milestones from your real history, then choose what feels right.</p><button class="btn btn-quiet" id="goalPlanner" type="button">Build a plan</button></aside></div>
+        </section>
+
+        <section class="view" id="view-rituals" aria-labelledby="ritualsTitle">
+          <div class="page-heading"><div><p class="eyebrow">RHYTHM &amp; RECOVERY</p><h1 id="ritualsTitle">Rituals that meet you where you are.</h1><p>Habits, grace days, and a pause button for your nervous system.</p></div><button class="btn btn-primary" id="addRitual" type="button">+ Add ritual</button></div>
+          <div class="ritual-overview"><article class="grace-card"><div class="grace-token">✦</div><div><p class="eyebrow">GRACE DAYS</p><h2><span id="graceDays">2</span> held in reserve</h2><p>They preserve a rhythm when life gets loud. Nothing about a lapse is a failure.</p></div><button class="btn btn-quiet" id="useGraceDay" type="button">Use one kindly</button></article><article class="ritual-stat-card"><p class="eyebrow">LONGEST RHYTHM</p><b id="longestRhythm">14</b><span>days of showing up</span><div class="ritual-calendar" id="ritualCalendar"></div></article></div>
+          <div class="section-heading"><div><p class="eyebrow">YOUR RITUALS</p><h2>Small promises</h2></div><button class="text-button" data-view="archive" type="button">See history →</button></div><section class="ritual-list" id="ritualList"></section>
+          <div class="section-heading"><div><p class="eyebrow">STATE SHIFT</p><h2>Pause before pushing.</h2></div><span class="eyebrow ritual-safety">Always optional. Skip breath holds if they are not right for you.</span></div>
+          <section class="breathwork-card"><div class="breath-orb" id="breathOrb"><span id="breathPhase">READY</span></div><div class="breath-copy"><p class="eyebrow">GENTLE BREATHWORK</p><h3 id="breathTitle">Box breathing</h3><p id="breathDescription">Four easy counts in, hold, out, and rest. A steady place to begin.</p><div class="breath-options"><button class="breath-option active" data-breath="box" type="button">Box · 4–4–4–4</button><button class="breath-option" data-breath="calm" type="button">Long exhale · 4–6</button><button class="breath-option" data-breath="reset" type="button">Reset · 3–3</button></div><div class="breath-actions"><button class="btn btn-primary" id="startBreathwork" type="button">Start 1 minute</button><button class="btn btn-quiet" id="soundscapeToggle" type="button">♪ Soundscape off</button></div></div><div class="breath-log"><span id="breathLogCount">0</span><small>quiet pauses<br />recorded</small></div></section>
+        </section>
+
+        <section class="view" id="view-archive" aria-labelledby="archiveTitle">
+          <div class="page-heading"><div><p class="eyebrow">LIFE ARCHIVE</p><h1 id="archiveTitle">The record you are making.</h1><p>See days, memories, and long horizons without reducing a life to a score.</p></div><button class="btn btn-primary" id="addMemory" type="button">+ Save a memory</button></div>
+          <div class="archive-layout"><article class="archive-calendar-card"><div class="chart-title"><div><p class="eyebrow">YOUR RECENT RHYTHM</p><h3>Days with a moment</h3></div><span class="settings-value">last 12 weeks</span></div><div class="archive-calendar" id="archiveCalendar"></div><div class="calendar-key"><span><i class="level-1"></i> A little</span><span><i class="level-2"></i> In motion</span><span><i class="level-3"></i> Full day</span></div></article><article class="memory-card"><div class="chart-title"><div><p class="eyebrow">MILESTONES</p><h3>Keep what matters</h3></div><button class="text-button" id="addMemorySecondary" type="button">Add →</button></div><div class="memory-list" id="memoryList"></div></article></div>
+          <section class="horizons-card"><div><p class="eyebrow">YEARLY HORIZONS</p><h2>Direction with room to change.</h2><p>Long-term intentions live here; tasks stay small elsewhere.</p></div><button class="btn btn-quiet" id="addResolution" type="button">+ Add horizon</button><div class="resolution-list" id="resolutionList"></div></section>
+        </section>
+
+        <section class="view" id="view-dashboard" aria-labelledby="dashboardTitle">
+          <div class="page-heading"><div><p class="eyebrow">YOUR PATTERNS</p><h1 id="dashboardTitle">Progress, without pressure.</h1><p>Numbers are mirrors, not grades.</p></div><div class="range-tabs"><button class="active" data-dashboard-range="7" type="button">7 days</button><button data-dashboard-range="30" type="button">30 days</button><button data-dashboard-range="365" type="button">Year</button></div></div>
+          <div class="metric-grid" id="metricGrid"></div>
+          <div class="dashboard-grid"><article class="chart-card chart-card-wide"><div class="chart-title"><div><p class="eyebrow">DAILY ENERGY</p><h3>XP earned</h3></div><span class="up-pill">↗ 18%</span></div><div class="line-chart" id="lineChart"></div><div class="chart-labels"><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span><span>Mon</span><span>Today</span></div></article><article class="chart-card"><div class="chart-title"><div><p class="eyebrow">WHERE TIME WENT</p><h3>7-day mix</h3></div></div><div class="donut-wrap"><div class="donut" id="donutChart"><div><b id="donutHours">12h</b><span>logged</span></div></div><ul class="chart-legend" id="chartLegend"></ul></div></article></div>
+          <article class="insight-card"><div class="insight-icon">✦</div><div><p class="eyebrow">A SMALL PATTERN</p><h3 id="insightTitle">Your deepest focus tends to happen after a quiet start.</h3><p id="insightText">Three study sessions this week began before 10am. Want to protect one more gentle morning block?</p></div><button class="text-button" data-view="study" type="button">Open study →</button></article>
+        </section>
+
+        <section class="view" id="view-achievements" aria-labelledby="achievementTitle">
+          <div class="page-heading"><div><p class="eyebrow">YOUR TROPHY SHELF</p><h1 id="achievementTitle">Proof you showed up.</h1><p>Nothing expires, nothing is taken away.</p></div><div class="achievement-count"><b id="achievementCount">3</b><span>unlocked</span></div></div>
+          <div class="achievement-feature"><div class="feature-medal">✦</div><div><p class="eyebrow">LATEST UNLOCK</p><h2 id="latestAchievement">The First Page</h2><p id="latestAchievementCopy">Log a reading session. The beginning of a long shelf.</p></div><div class="feature-xp">+<span id="latestAchievementXp">50</span> XP</div></div>
+          <div class="achievement-grid" id="achievementGrid"></div>
+        </section>
+
+        <section class="view" id="view-character" aria-labelledby="characterTitle">
+          <div class="page-heading"><div><p class="eyebrow">YOUR COMPANION</p><h1 id="characterTitle">Built from your little wins.</h1><p>Your character is a visual reflection of progress—never a reason to push through exhaustion.</p></div><button class="btn btn-quiet" id="renameCharacter" type="button">Rename character</button></div>
+          <div class="character-page"><div class="character-big-stage"><div class="big-sun"></div><div class="character-wrap character-wrap--big"><img class="companion-image" src="life-companion.png" alt="Your LIFE companion" /></div></div><div class="character-stats"><div><span>LEVEL</span><b id="characterLevel">5</b></div><div><span>TOTAL XP</span><b id="characterXp">1,240</b></div><div><span>RHYTHM</span><b><i>✦</i> <span id="characterStreak">6 days</span></b></div></div></div>
+          <div class="track-grid" id="trackGrid"></div>
+        </section>
+
+        <section class="view" id="view-settings" aria-labelledby="settingsTitle">
+          <div class="page-heading"><div><p class="eyebrow">MAKE IT YOURS</p><h1 id="settingsTitle">Settings, without a maze.</h1><p>Your data and choices stay under your control.</p></div></div>
+          <div class="settings-layout"><section class="settings-main"><article class="settings-card"><div class="settings-card-title"><div><p class="eyebrow">APPEARANCE</p><h2>Choose your atmosphere</h2></div><span class="settings-value" id="currentThemeLabel">Warring Banners</span></div><div class="theme-swatches" id="themeSwatches"></div></article>
+            <article class="settings-card"><div class="settings-card-title"><div><p class="eyebrow">LLM COMPANION</p><h2>Bring your own intelligence</h2><p>Optional. LIFE works completely without it.</p></div><span class="provider-status" id="providerStatus">Not connected</span></div><form id="providerForm" class="provider-form"><label>Provider<select id="providerType"><option value="none">No LLM — fully offline</option><option value="ollama">Ollama (local)</option><option value="openai">OpenAI-compatible</option><option value="custom">Another OpenAI-compatible endpoint</option></select></label><label>Endpoint<input id="providerEndpoint" placeholder="http://localhost:11434" /></label><label>Model<input id="providerModel" placeholder="qwen2.5:7b" /></label><label>API key <span class="label-note">optional for local</span><input id="providerKey" type="password" placeholder="stored only in this browser prototype" /></label><div class="provider-actions"><button class="btn btn-quiet" id="testProvider" type="button">Test connection</button><button class="btn btn-primary" type="submit">Save provider</button></div></form><div class="privacy-note">Provider settings stay in this browser prototype. Before a cloud request, LIFE tells you what context would leave your device. Backups never include your provider key.</div></article>
+            <article class="settings-card"><div class="settings-card-title"><div><p class="eyebrow">MEMORY</p><h2>Private suggestion context</h2><p>Let recommendations use your local rating history. The browser edition has no embeddings or vector database; desktop builds can add optional local vector retrieval.</p></div><label class="switch"><input type="checkbox" id="memoryEnabled" checked /><span></span></label></div><div class="memory-row"><div><b id="memoryCount">0</b><span>private items available on this device</span></div></div></article></section>
+          <aside class="settings-side"><article class="settings-summary"><span class="sidecard-icon">⌂</span><p class="eyebrow">LOCAL-FIRST</p><h3>One life. One private archive.</h3><p>Data lives in this browser for the prototype. Export a portable backup whenever you want.</p><button class="btn btn-quiet" id="exportData" type="button">Export my data</button><label class="btn btn-quiet file-button">Import backup <input id="backupImport" type="file" accept="application/json" /></label></article><button class="danger-link" id="resetData" type="button">Reset local demo data</button></aside></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="modal-layer" id="modalLayer" aria-hidden="true"><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
+    <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+    <template id="modalTemplate"></template>
+    <script src="app.js"></script>
+  </body>
+</html>

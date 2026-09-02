@@ -1,0 +1,58 @@
+# OS and editor files
+.DS_Store
+.idea/
+.vscode/
+
+# Runtime and package artifacts
+node_modules/
+dist/
+build/
+coverage/
+*.log
+
+# Local LIFE data and exports — never commit personal data
+*.db
+*.sqlite
+*.sqlite3
+*.db-wal
+*.db-shm
+exports/
+imports/
+backups/
+attachments/
+models/
+life-backup-*.json
+letterboxd-*/
+# Bare files from a standard Letterboxd export should never be staged either.
+/diary.csv
+/watched.csv
+/ratings.csv
+/watchlist.csv
+/reviews.csv
+/comments.csv
+/films.csv
+/lists.csv
+/profile.csv
+
+# Secrets
+.env
+.env.*
+!.env.example
+.envrc
+.npmrc
+!.npmrc.example
+credentials/
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Private research/spec notes retained locally; public docs are explicitly allowed.
+docs/*
+!docs/ARCHITECTURE.md
+!docs/LLM_BEHAVIOR.md
+!docs/PRIVACY.md
+!docs/IMPORTING_LETTERBOXD.md
+!docs/OSS_RELEASE.md
+!docs/ENVIRONMENT.md
